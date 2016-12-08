@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <vector>
+#include "switchcolor.h"
 
 //on créé une fonction qui va prendre en argument le tableau et la pièce qu'on
 //veut mettre et renvoie true ou false sans changer le tableau, on peut ainsi
@@ -137,6 +138,33 @@ std::vector<int> touche_diff(char tableau[MSIZE][MSIZE],int i,int j,char couleur
     return touches;
 }
 
-bool pion_capture(int i,int j,char couleur){
-
+//retourne true si le pion est capturé, false sinon
+bool pion_capture(char tableau[MSIZE][MSIZE],int i,int j,char couleur){
+    bool capture = true;//on l'initialise à true et on regarde si on ne peit pas le mettre false
+    
+    //cas hors bords
+    if (i != 0 && j != 0 && i != MSIZE-1 && j != MSIZE-1){
+        if (tableau[i-1][j] == '+' || tableau[i][j-] == '+' || tableau[i+1][j] == '+' || tableau[i][j+1] == '+'){
+            capture = false;
+        }
+        
+        //test sur toutes les directions pour savoir si on a des pions de même couleur
+        //puis récursivité en changeant la couleur du pion originel pour éviter qu'ils ne se lancent la balle l'un l'autre
+        if (tableau[i][j] == tableau[i-1][j]){
+        
+        }
+        if (tableau[i][j] == tableau[i][j-1]){
+        
+        }
+        if (tableau[i][j] == tableau[i+1][j]){
+        
+        }
+        if (tableau[i][j] == tableau[i][j+1]){
+        
+        }
+        
+        
+    }
+    
+    return capture;
 }
