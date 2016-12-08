@@ -150,21 +150,40 @@ bool pion_capture(char tableau[MSIZE][MSIZE],int i,int j,char couleur){
         
         //test sur toutes les directions pour savoir si on a des pions de même couleur
         //puis récursivité en changeant la couleur du pion originel pour éviter qu'ils ne se lancent la balle l'un l'autre
+        //on stocke également les coord des pions de même couleur dans un vect<int>
+        //ici, cependant, on stocke sous forme j,i pour utiliser les popbacks
+        std::vector<int> memecouleur;
+        memecouleur.push_back(0);//on stocke le nbre de pions blancs qu'on trouve
         if (tableau[i][j] == tableau[i-1][j]){
-        
+            memecouleur.push_back(j);
+            memecouleur.push_back(i-1);
+            memecouleur[0] += 1;
         }
         if (tableau[i][j] == tableau[i][j-1]){
-        
+            memecouleur.push_back(j-1);
+            memecouleur.push_back(i);
+            memecouleur[0] += 1;
         }
         if (tableau[i][j] == tableau[i+1][j]){
-        
+            memecouleur.push_back(j);
+            memecouleur.push_back(i+1);
+            memecouleur[0] += 1;
         }
         if (tableau[i][j] == tableau[i][j+1]){
-        
+            memecouleur.push_back(j+1);
+            memecouleur.push_back(i);
+            memecouleur[0] += 1;
         }
         
-        
-    }
+        //on teste sur les autres et on retourne false si c'est false pour l'un d'entre eux
+        //mais au préalable, on change la couleur du pion courant (que l'on rechangera ensuite) pour éviter le ping-pong
+        couleur = switchcolor(couleur);
+        for (int k = 0; k < memecouleur[0]; k++){//on utilise la récursivité pour tous les pions adjacents de la meme couleur
+            if (pion_capture(tableau[MSIZE][MSIZE],memecouleur.pop_back(),memecouleur.pop_back(),switchcolor(couleur)) == false){
+                capture = false;
+            }
+        }
+    }//ici se termine le cas général
     
     return capture;
 }
