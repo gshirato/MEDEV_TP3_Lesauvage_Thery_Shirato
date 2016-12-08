@@ -134,6 +134,9 @@ std::vector<int> touche_diff(char tableau[MSIZE][MSIZE],int i,int j,char couleur
         }
     }
     
-    
     return touches;
+}
+
+bool pion_capture(int i,int j,char couleur){
+
 }
