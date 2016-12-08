@@ -21,24 +21,29 @@ bool test_capture(char tableau[MSIZE][MSIZE],int i, int j, char couleur){
 
 
 //fonction pour voir si un pion touche un ou plusieurs autres pions
-//renvoie un vect<int> avec, pour chaque pion adj de couleur diff i puis j
+//renvoie un vect<int> avec, pour chaque pion adj de couleur diff j puis i pour les pop_back
 //prend en arg le tableau 
 std::vector<int> touche_diff(char tableau[MSIZE][MSIZE],int i,int j,char couleur){
-    std::vector<int> touches = ();
+    std::vector<int> touches;
+    touches.push_back(0);
     if(i != 0 && i != MSIZE-1 && j != 0 && j != MSIZE-1){
         //on fait d'abord en dehors des bords
         //on vérifie pour les quatre directions
         if(tableau[i-1][j] != couleur && tableau[i-1][j] != '+'){
-            touches.push_back(i-1,j);
+            touches.push_back(j,i-1);
+            touches[0] += 1;
         }
         if(tableau[i][j-1] != couleur && tableau[i][j-1] != '+'){
-            touches.push_back(i,j-1);
+            touches.push_back(j-1,i);
+            touches[0] += 1;
         }
         if(tableau[i+1][j] != couleur && tableau[i+1][j] != '+'){
-            touches.push_back(i+1,j);
+            touches.push_back(j,i+1);
+            touches[0] += 1;
         }
         if(tableau[i][j+1] != couleur && tableau[i][j+1] != '+'){
-            touches.push_back(i,j+1);
+            touches.push_back(j+1,i);
+            touches[0] += 1;
         }
     }
     
@@ -46,92 +51,112 @@ std::vector<int> touche_diff(char tableau[MSIZE][MSIZE],int i,int j,char couleur
     //ici, on est sur le bord gauche sans être dans les coins
     if(i == 0 && j != 0 && j != MSIZE-1){
         if(tableau[i][j-1] != couleur && tableau[i][j-1] != '+'){
-            touches.push_back(i,j-1);
+            touches.push_back(j-1,i);
+            touches[0] += 1;
         }
         if(tableau[i+1][j] != couleur && tableau[i+1][j] != '+'){
-            touches.push_back(i+1,j);
+            touches.push_back(j,i+1);
+            touches[0] += 1;
         }
         if(tableau[i][j+1] != couleur && tableau[i][j+1] != '+'){
-            touches.push_back(i,j+1);
+            touches.push_back(j+1,i);
+            touches[0] += 1;
         }
     }
     
     //ici, on est sur le bord droit sans être dans les coins
     if(i == MSIZE-1 && j != 0 && j != MSIZE-1){
         if(tableau[i-1][j] != couleur && tableau[i-1][j] != '+'){
-            touches.push_back(i-1,j);
+            touches.push_back(j,i-1);
+            touches[0] += 1;
         }
         if(tableau[i][j-1] != couleur && tableau[i][j-1] != '+'){
-            touches.push_back(i,j-1);
+            touches.push_back(j-1,i);
+            touches[0] += 1;
         }
         if(tableau[i][j+1] != couleur && tableau[i][j+1] != '+'){
-            touches.push_back(i,j+1);
+            touches.push_back(j+1,i);
+            touches[0] += 1;
         }
     }
     
     //en haut != coins
     if(j == 0 && i != 0 && i != MSIZE-1){
         if(tableau[i-1][j] != couleur && tableau[i-1][j] != '+'){
-            touches.push_back(i-1,j);
+            touches.push_back(j,i-1);
+            touches[0] += 1;
         }
         if(tableau[i+1][j] != couleur && tableau[i+1][j] != '+'){
-            touches.push_back(i+1,j);
+            touches.push_back(j,i+1);
+            touches[0] += 1;
         }
         if(tableau[i][j+1] != couleur && tableau[i][j+1] != '+'){
-            touches.push_back(i,j+1);
+            touches.push_back(j+1,i);
+            touches[0] += 1;
         }
     }
     
     //en bas
     if(i != 0 && i != MSIZE-1 && j == MSIZE-1){
         if(tableau[i-1][j] != couleur && tableau[i-1][j] != '+'){
-            touches.push_back(i-1,j);
+            touches.push_back(j,i-1);
+            touches[0] += 1;
         }
         if(tableau[i][j-1] != couleur && tableau[i][j-1] != '+'){
-            touches.push_back(i,j-1);
+            touches.push_back(j-1,i);
+            touches[0] += 1;
         }
         if(tableau[i+1][j] != couleur && tableau[i+1][j] != '+'){
-            touches.push_back(i+1,j);
+            touches.push_back(j,i+1);
+            touches[0] += 1;
         }
     }
     
     //en haut à gauche
     if(i == 0 && j == 0){
         if(tableau[i+1][j] != couleur && tableau[i+1][j] != '+'){
-            touches.push_back(i+1,j);
+            touches.push_back(j,i+1);
+            touches[0] += 1;
         }
         if(tableau[i][j+1] != couleur && tableau[i][j+1] != '+'){
-            touches.push_back(i,j+1);
+            touches.push_back(j+1,i);
+            touches[0] += 1;
         }
     }
     
     //haut droite
     if(i == 0 && j == MSIZE-1){
         if(tableau[i][j-1] != couleur && tableau[i][j-1] != '+'){
-            touches.push_back(i,j-1);
+            touches.push_back(j-1,i);
+            touches[0] += 1;
         }
         if(tableau[i+1][j] != couleur && tableau[i+1][j] != '+'){
-            touches.push_back(i+1,j);
+            touches.push_back(j,i+1);
+            touches[0] += 1;
         }
     }
     
     //bas gauche
     if(i == MSIZE-1 && j = 0){
         if(tableau[i-1][j] != couleur && tableau[i-1][j] != '+'){
-            touches.push_back(i-1,j);
+            touches.push_back(j,i-1);
+            touches[0] += 1;
         }
         if(tableau[i][j+1] != couleur && tableau[i][j+1] != '+'){
-            touches.push_back(i,j+1);
+            touches.push_back(j+1,i);
+            touches[0] += 1;
         }
     }
     
     //bas droite
     if(i == MSIZE-1 && j == MSIZE-1){
         if(tableau[i-1][j] != couleur && tableau[i-1][j] != '+'){
-            touches.push_back(i-1,j);
+            touches.push_back(j,i-1);
+            touches[0] += 1;
         }
         if(tableau[i][j-1] != couleur && tableau[i][j-1] != '+'){
-            touches.push_back(i,j-1);
+            touches.push_back(j-1,i);
+            touches[0] += 1;
         }
     }
     
