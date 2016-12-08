@@ -10,11 +10,15 @@
 //utiliser cette fonction pour voir si on est dans un cas de suicide ou pas
 
 bool test_capture(char tableau[MSIZE][MSIZE],int i, int j, char couleur){
+    //ici, on récupère la liste des pions de couleur diff avec touche_diff
+    //puis, on renvoie true si l'un est capturé (pion_capture)
     bool capture = false;
-    
-    
-    
-    
+    std::vector<int> touches = touche_diff(tableau,i,j,couleur);
+    for (int t = 0; t < touches[0]; t++){
+        if(pion_capture(tableau,touches.pop_back(),touches.pop_back(),couleur)){
+            capture = true;
+        }
+    }
     
     return capture;
 }
@@ -204,7 +208,7 @@ bool pion_capture(char tableau[MSIZE][MSIZE],int i,int j,char couleur){
         //mais au préalable, on change la couleur du pion courant (que l'on rechangera ensuite) pour éviter le ping-pong
         couleur = switchcolor(couleur);
         for (int k = 0; k < memecouleur[0]; k++){//on utilise la récursivité pour tous les pions adjacents de la meme couleur
-            if (pion_capture(tableau[MSIZE][MSIZE],memecouleur.pop_back(),memecouleur.pop_back(),switchcolor(couleur)) == false){
+            if (pion_capture(tableau,memecouleur.pop_back(),memecouleur.pop_back(),switchcolor(couleur)) == false){
                 capture = false;
             }
         }
@@ -244,7 +248,7 @@ bool pion_capture(char tableau[MSIZE][MSIZE],int i,int j,char couleur){
         //mais au préalable, on change la couleur du pion courant (que l'on rechangera ensuite) pour éviter le ping-pong
         couleur = switchcolor(couleur);
         for (int k = 0; k < memecouleur[0]; k++){//on utilise la récursivité pour tous les pions adjacents de la meme couleur
-            if (pion_capture(tableau[MSIZE][MSIZE],memecouleur.pop_back(),memecouleur.pop_back(),switchcolor(couleur)) == false){
+            if (pion_capture(tableau,memecouleur.pop_back(),memecouleur.pop_back(),switchcolor(couleur)) == false){
                 capture = false;
             }
         }
@@ -282,7 +286,7 @@ bool pion_capture(char tableau[MSIZE][MSIZE],int i,int j,char couleur){
         //mais au préalable, on change la couleur du pion courant (que l'on rechangera ensuite) pour éviter le ping-pong
         couleur = switchcolor(couleur);
         for (int k = 0; k < memecouleur[0]; k++){//on utilise la récursivité pour tous les pions adjacents de la meme couleur
-            if (pion_capture(tableau[MSIZE][MSIZE],memecouleur.pop_back(),memecouleur.pop_back(),switchcolor(couleur)) == false){
+            if (pion_capture(tableau,memecouleur.pop_back(),memecouleur.pop_back(),switchcolor(couleur)) == false){
                 capture = false;
             }
         }
@@ -320,7 +324,7 @@ bool pion_capture(char tableau[MSIZE][MSIZE],int i,int j,char couleur){
         //mais au préalable, on change la couleur du pion courant (que l'on rechangera ensuite) pour éviter le ping-pong
         couleur = switchcolor(couleur);
         for (int k = 0; k < memecouleur[0]; k++){//on utilise la récursivité pour tous les pions adjacents de la meme couleur
-            if (pion_capture(tableau[MSIZE][MSIZE],memecouleur.pop_back(),memecouleur.pop_back(),switchcolor(couleur)) == false){
+            if (pion_capture(tableau,memecouleur.pop_back(),memecouleur.pop_back(),switchcolor(couleur)) == false){
                 capture = false;
             }
         }
@@ -358,7 +362,7 @@ bool pion_capture(char tableau[MSIZE][MSIZE],int i,int j,char couleur){
         //mais au préalable, on change la couleur du pion courant (que l'on rechangera ensuite) pour éviter le ping-pong
         couleur = switchcolor(couleur);
         for (int k = 0; k < memecouleur[0]; k++){//on utilise la récursivité pour tous les pions adjacents de la meme couleur
-            if (pion_capture(tableau[MSIZE][MSIZE],memecouleur.pop_back(),memecouleur.pop_back(),switchcolor(couleur)) == false){
+            if (pion_capture(tableau,memecouleur.pop_back(),memecouleur.pop_back(),switchcolor(couleur)) == false){
                 capture = false;
             }
         }
@@ -392,7 +396,7 @@ bool pion_capture(char tableau[MSIZE][MSIZE],int i,int j,char couleur){
         //mais au préalable, on change la couleur du pion courant (que l'on rechangera ensuite) pour éviter le ping-pong
         couleur = switchcolor(couleur);
         for (int k = 0; k < memecouleur[0]; k++){//on utilise la récursivité pour tous les pions adjacents de la meme couleur
-            if (pion_capture(tableau[MSIZE][MSIZE],memecouleur.pop_back(),memecouleur.pop_back(),switchcolor(couleur)) == false){
+            if (pion_capture(tableau,memecouleur.pop_back(),memecouleur.pop_back(),switchcolor(couleur)) == false){
                 capture = false;
             }
         }
@@ -426,7 +430,7 @@ bool pion_capture(char tableau[MSIZE][MSIZE],int i,int j,char couleur){
         //mais au préalable, on change la couleur du pion courant (que l'on rechangera ensuite) pour éviter le ping-pong
         couleur = switchcolor(couleur);
         for (int k = 0; k < memecouleur[0]; k++){//on utilise la récursivité pour tous les pions adjacents de la meme couleur
-            if (pion_capture(tableau[MSIZE][MSIZE],memecouleur.pop_back(),memecouleur.pop_back(),switchcolor(couleur)) == false){
+            if (pion_capture(tableau,memecouleur.pop_back(),memecouleur.pop_back(),switchcolor(couleur)) == false){
                 capture = false;
             }
         }
@@ -460,7 +464,7 @@ bool pion_capture(char tableau[MSIZE][MSIZE],int i,int j,char couleur){
         //mais au préalable, on change la couleur du pion courant (que l'on rechangera ensuite) pour éviter le ping-pong
         couleur = switchcolor(couleur);
         for (int k = 0; k < memecouleur[0]; k++){//on utilise la récursivité pour tous les pions adjacents de la meme couleur
-            if (pion_capture(tableau[MSIZE][MSIZE],memecouleur.pop_back(),memecouleur.pop_back(),switchcolor(couleur)) == false){
+            if (pion_capture(tableau,memecouleur.pop_back(),memecouleur.pop_back(),switchcolor(couleur)) == false){
                 capture = false;
             }
         }
@@ -494,7 +498,7 @@ bool pion_capture(char tableau[MSIZE][MSIZE],int i,int j,char couleur){
         //mais au préalable, on change la couleur du pion courant (que l'on rechangera ensuite) pour éviter le ping-pong
         couleur = switchcolor(couleur);
         for (int k = 0; k < memecouleur[0]; k++){//on utilise la récursivité pour tous les pions adjacents de la meme couleur
-            if (pion_capture(tableau[MSIZE][MSIZE],memecouleur.pop_back(),memecouleur.pop_back(),switchcolor(couleur)) == false){
+            if (pion_capture(tableau,memecouleur.pop_back(),memecouleur.pop_back(),switchcolor(couleur)) == false){
                 capture = false;
             }
         }
