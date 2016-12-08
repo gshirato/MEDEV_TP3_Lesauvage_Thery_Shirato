@@ -8,7 +8,9 @@
 #ifndef CAPTURE_H
 #define	CAPTURE_H
 
-
+bool test_capture(char tableau[MSIZE][MSIZE],int i, int j, char couleur);
+std::vector<int> touche_diff(char tableau[MSIZE][MSIZE],int i,int j,char couleur);
+bool pion_capture(char tableau[MSIZE][MSIZE],int i,int j,char couleur);
 
 #endif	/* CAPTURE_H */
 
