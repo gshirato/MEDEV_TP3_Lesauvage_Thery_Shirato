@@ -24,7 +24,22 @@ bool test_capture(char tableau[MSIZE][MSIZE],int i, int j, char couleur){
 //prend en arg le tableau 
 std::vector<int> touche_diff(char tableau[MSIZE][MSIZE],int i,int j,char couleur){
     std::vector<int> touches;
-    
+    if(i != 0 && i != MSIZE-1 && j != 0 && j != MSIZE-1){
+        //on fait d'abord en dehors des bords
+        //on vérifie pour les quatre directions
+        if(tableau[i-1][j] != couleur && tableau[i-1][j] != '+'){
+            touches.push_back(i-1,j);
+        }
+        if(tableau[i][j-1] != couleur && tableau[i][j-1] != '+'){
+            touches.push_back(i,j-1);
+        }
+        if(tableau[i+1][j] != couleur && tableau[i+1][j] != '+'){
+            touches.push_back(i+1,j);
+        }
+        if(tableau[i][j+1] != couleur && tableau[i][j+1] != '+'){
+            touches.push_back(i,j+1);
+        }
+    }
     
     return touches;
 }
