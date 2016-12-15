@@ -1,3 +1,4 @@
+
 #include "Go.h"
 #include "functions.h"
 #include <iostream>
@@ -51,7 +52,7 @@ void Kaikyoku(goban g, int n) {
                 g.pierre(2, pos_y-1, pos_x);
                 g.affichage(n);
 
-
+                g.TurnEnd();
     }
 
 }
