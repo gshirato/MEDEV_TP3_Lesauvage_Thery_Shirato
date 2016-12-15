@@ -9,6 +9,26 @@
 //veut mettre et renvoie true ou false sans changer le tableau, on peut ainsi
 //utiliser cette fonction pour voir si on est dans un cas de suicide ou pas
 
+void enlever_pierres(char& tableau[MSIZE][MSIZE]){
+    std::vector<int> morts;
+    morts.push_back(0);//compteur
+    for (int i = 0; i < MSIZE; i++){
+        for (int j = 0; j < MSIZE; j++){
+            if (pion_capture(tableau,i,j,tableau[i][j]) == true){
+                morts.push_back(j);//on organise le tableau avec les coordonnées j puis i
+                morts.push_back(i);
+                morts[0] += 1;
+            }
+        }
+    }
+    for (int k = 0; k < morts[0]; k++){
+        tableau[morts[morts.size()-1]][morts[morts.size()-2]] = '+';
+        morts.pop_back();
+        morts.pop_back();
+    }
+}
+
+
 bool test_capture(char tableau[MSIZE][MSIZE],int i, int j, char couleur){
     //ici, on récupère la liste des pions de couleur diff avec touche_diff
     //puis, on renvoie true si l'un est capturé (pion_capture)
@@ -245,6 +265,7 @@ bool pion_capture(char tableau[MSIZE][MSIZE],int i,int j,char couleur){
             memecouleur.pop_back();
         }
         couleur = switchcolor(couleur);
+        return capture;
     }//ici se termine le cas général
     
     
@@ -294,6 +315,7 @@ bool pion_capture(char tableau[MSIZE][MSIZE],int i,int j,char couleur){
             memecouleur.pop_back();
         }
         couleur = switchcolor(couleur);
+        return capture;
     }
     //en bas
     if (i == MSIZE-1 && j != 0 && j != MSIZE-1){
@@ -336,6 +358,7 @@ bool pion_capture(char tableau[MSIZE][MSIZE],int i,int j,char couleur){
             memecouleur.pop_back();
         }
         couleur = switchcolor(couleur);
+        return capture;
     }
     //à gauche
     if (i != 0 && i != MSIZE-1 && j == 0){
@@ -378,6 +401,7 @@ bool pion_capture(char tableau[MSIZE][MSIZE],int i,int j,char couleur){
             memecouleur.pop_back();
         }
         couleur = switchcolor(couleur);
+        return capture;
     }
     //à droite
     if (i != 0 && i != MSIZE-1 && j == MSIZE-1){
@@ -420,6 +444,7 @@ bool pion_capture(char tableau[MSIZE][MSIZE],int i,int j,char couleur){
             memecouleur.pop_back();
         }
         couleur = switchcolor(couleur);
+        return capture;
     }
     
     //haut gauche
@@ -458,6 +483,7 @@ bool pion_capture(char tableau[MSIZE][MSIZE],int i,int j,char couleur){
             memecouleur.pop_back();
         }
         couleur = switchcolor(couleur);
+        return capture;
     }
     
     //haut droite
@@ -496,6 +522,7 @@ bool pion_capture(char tableau[MSIZE][MSIZE],int i,int j,char couleur){
             memecouleur.pop_back();
         }
         couleur = switchcolor(couleur);
+        return capture;
     }
     
     //bas gauche
@@ -534,6 +561,7 @@ bool pion_capture(char tableau[MSIZE][MSIZE],int i,int j,char couleur){
             memecouleur.pop_back();
         }
         couleur = switchcolor(couleur);
+        return capture;
     }
     
     //bas droite
@@ -572,8 +600,9 @@ bool pion_capture(char tableau[MSIZE][MSIZE],int i,int j,char couleur){
             memecouleur.pop_back();
         }
         couleur = switchcolor(couleur);
+        return capture;
     }
     
     //enfin, on retourne le résultat
-    return capture;
+    
 }
