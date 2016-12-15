@@ -14,6 +14,7 @@
 bool test_capture(char tableau[MSIZE][MSIZE],int i, int j, char couleur);
 std::vector<int> touche_diff(char tableau[MSIZE][MSIZE],int i,int j,char couleur);
 bool pion_capture(char tableau[MSIZE][MSIZE],int i,int j,char couleur);
+void enlever_pierres(char& tableau[MSIZE][MSIZE]);
 
 #endif	/* CAPTURE_H */
 
