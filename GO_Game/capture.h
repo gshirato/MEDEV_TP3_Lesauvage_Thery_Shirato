@@ -7,6 +7,9 @@
 
 #ifndef CAPTURE_H
 #define	CAPTURE_H
+#include <vector>
+#include <cstdlib>
+#include <iostream>
 
 bool test_capture(char tableau[MSIZE][MSIZE],int i, int j, char couleur);
 std::vector<int> touche_diff(char tableau[MSIZE][MSIZE],int i,int j,char couleur);
