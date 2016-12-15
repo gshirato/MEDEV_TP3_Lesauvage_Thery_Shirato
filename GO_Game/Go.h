@@ -18,13 +18,50 @@
 
 class goban {
 private:
+
+    int turn; /*number of turn*/
     int board[MSIZE][MSIZE]; /*[position_y][position__x]*/
     //int ren[MSIZE][MSIZE]; /*[position_y][position_x]*/
+
+
 public:
     //Ren connecting stones
     // global counter 
     //int counter = 0;
 
+    /*accesseur*/
+
+    int getTurn() {
+        return turn;
+    }
+
+    int getKoX() {
+        return ko_x;
+    }
+
+    int getKoY() {
+        return ko_y;
+    }
+
+    int getKoNum() {
+        return ko_num;
+    }
+
+    void TurnEnd() {
+        turn++;
+    }
+
+    void setKoX(int x) {
+        ko_x = x;
+    }
+
+    void setKoY(int y) {
+        ko_y = y;
+    }
+
+    void setKoNum(int n) {
+        ko_num = n;
+    }
     /* CONSTRUCTEUR goban()
      * argument: void
      * return  : void
@@ -49,12 +86,26 @@ public:
      * descrip. :mettre une pierre*/
     void pierre(int type, int y, int x);
 
-    /* FONCTION enlever(int type, int y, int x)
+    /* FONCTION void enlever(int type, int y, int x)
      * arguments: integers position of stone(x,y) 
      * return   : void
      * descrip. :mettre une pierre*/
     void enlever();
+
+    /* FONCTION bool checklegal(int type, int y, int x)
+     * arguments: integers color of stone, position of stone(x,y) 
+     * return   : bool
+     * descrip. :whether you can put your stone or not*/
+    bool checklegal(int type, int y, int x);
+
+    /* FONCTION bool CheckSuicide(int type, int y, int x)
+     * arguments: integers color of stone, position of stone(x,y) 
+     * return   : bool
+     * descrip. :whether your choice is to suicide or not*/
+    bool CheckSuicide(int type, int y, int x);
 };
+
+
 
 #endif	/* GO_H */
 
