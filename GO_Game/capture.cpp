@@ -18,6 +18,7 @@ bool test_capture(char tableau[MSIZE][MSIZE],int i, int j, char couleur){
     for (int t = 0; t < touches[0]; t++){
         if(pion_capture(tableau,touches[touches.size()-1],touches[touches.size()-2],couleur)){
             capture = true;
+            return capture;
         }
         touches.pop_back();
         touches.pop_back();
